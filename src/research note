@@ -1,12 +1,13 @@
 ---
 cssclasses: research-note
-tags:  {% if allTags %}{{allTags}}{% endif %}
+tags:  {% if allTags %}{% for tag in allTags.split(',') %}
+ {{ tag |trim}}{% endfor %}{% endif %}
 citekey: {{citekey}}
 aliases: {% if title %}"{{title}}"{% endif %}
 year: {{date | format("YYYY")}}
 itemType: {%- if itemType %} {{itemType}} {%- endif %}
 {%- if itemType == "journalArticle" %}  
-journal: {{publicationTitle}} 
+journal: "{{publicationTitle}}" 
 volume: {%- if volume %} {{volume}} {%- endif %}
 issue: {%- if issue %}  {{issue}} {%- endif %} 
 {%- endif %}  
@@ -23,10 +24,12 @@ pages: {{pages}} {%- endif %}
 DOI: {{DOI}} {%- endif %}
 {%- if ISBN %}  
 ISBN: {{ISBN}} {%- endif %}
+{%- if archiveLocation %}  
+location: {{archiveLocation}} {%- endif %}
 {% for type, creators in creators | groupby("creatorType") -%}{% if loop.first %}{% endif %}{{type | replace("interviewee", "author") | replace("director", "author") | replace("presenter", "author") | replace("podcaster", "author") | replace("programmer", "author") | replace("cartographer", "author") | replace("inventor", "author") | replace("sponsor", "author")  | replace("performer", "author") | replace("artist", "author")}}: "{%- for creator in creators -%}{%- if creator.name %}{{creator.name}}{%- else %}{{creator.lastName}}, {{creator.firstName}}{%- endif %}{% if not loop.last %}; {% endif %}{% endfor %}"{% if not loop.last %}
 {% endif %}{%- endfor %}
-url: {{url}}
-zotero: {{desktopURI}}
+url: "{{url}}"
+zotero: "{{desktopURI}}"
 contribution: "{{extra}}"
 ---
 ## Questions I have in this reference 
@@ -40,6 +43,8 @@ Flatten
 	file.lists AS L
 WHERE
 	contains(L.tags,"Q")
+SORT 
+	contains(L.tags,"Q/A")  ASC
 ```
 
 {% persist "notes" -%}
@@ -50,6 +55,15 @@ WHERE
 >
 {% endif %}
 {% endpersist %}
+
+%% ## Abstract
+ >{%- if abstractNote %}
+>{{abstractNote}}
+ >{%- endif -%}.
+
+## Notes
+> {%- if markdownNotes %}
+>{{markdownNotes}}{%- endif -%}. %%
 
 ## Annotations
 {% macro calloutHeader(color) -%}
