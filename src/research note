@@ -1,18 +1,27 @@
 ---
 cssclasses: research-note
+<<<<<<< HEAD
 tags:  {% if allTags %}{% for tag in allTags.split(',') %}
  {{ tag |trim}}{% endfor %}{% endif %}
+=======
+tags: {% if allTags %}{% for tag in allTags.split(',') %}
+{{ tag |trim}}{% endfor %}{% endif %}
+>>>>>>> 0d0faf3 (update research note)
 citekey: {{citekey}}
 aliases: {% if title %}"{{title}}"{% endif %}
 year: {{date | format("YYYY")}}
 itemType: {%- if itemType %} {{itemType}} {%- endif %}
 {%- if itemType == "journalArticle" %}  
+<<<<<<< HEAD
 journal: "{{publicationTitle}}" 
+=======
+journal: "{{publicationTitle}}"
+>>>>>>> 0d0faf3 (update research note)
 volume: {%- if volume %} {{volume}} {%- endif %}
-issue: {%- if issue %}  {{issue}} {%- endif %} 
-{%- endif %}  
+issue: {%- if issue %}  {{issue}} {%- endif %}
+{%- endif %}
 {%- if itemType == "bookSection" %}  
-book: {{publicationTitle}} 
+book: {{publicationTitle}}
 {%- if publisher %}  
 publisher: {{publisher}} {%- endif %}
 {%- endif %}
@@ -26,40 +35,61 @@ DOI: {{DOI}} {%- endif %}
 ISBN: {{ISBN}} {%- endif %}
 {%- if archiveLocation %}  
 location: {{archiveLocation}} {%- endif %}
+<<<<<<< HEAD
 {% for type, creators in creators | groupby("creatorType") -%}{% if loop.first %}{% endif %}{{type | replace("interviewee", "author") | replace("director", "author") | replace("presenter", "author") | replace("podcaster", "author") | replace("programmer", "author") | replace("cartographer", "author") | replace("inventor", "author") | replace("sponsor", "author")  | replace("performer", "author") | replace("artist", "author")}}: "{%- for creator in creators -%}{%- if creator.name %}{{creator.name}}{%- else %}{{creator.lastName}}, {{creator.firstName}}{%- endif %}{% if not loop.last %}; {% endif %}{% endfor %}"{% if not loop.last %}
+=======
+{% for type, creators in creators | groupby("creatorType") -%}{% if loop.first %}{% endif %}{{type |
+replace("interviewee", "author") | replace("director", "author") | replace("presenter", "author") | replace("podcaster",
+"author") | replace("programmer", "author") | replace("cartographer", "author") | replace("inventor", "author") |
+replace("sponsor", "author") | replace("performer", "author") | replace("artist", "author")}}: "{%- for creator in
+creators -%}{%- if creator.name %}{{creator.name}}{%- else %}{{creator.lastName}}, {{creator.firstName}}{%- endif %}{%
+if not loop.last %}; {% endif %}{% endfor %}"{% if not loop.last %}
+>>>>>>> 0d0faf3 (update research note)
 {% endif %}{%- endfor %}
 url: "{{url}}"
 zotero: "{{desktopURI}}"
 contribution: "{{extra}}"
 ---
-## Questions I have in this reference 
-```dataview 
+## Questions I have in this reference
+```dataview
 TABLE WITHOUT ID
-	link(L.link,string(L.position.start.line)) AS Line,
-	L.text AS Questions
-WHERE 
-	file = this.file 
-Flatten 
-	file.lists AS L
+link(L.link,string(L.position.start.line)) AS Line,
+L.text AS Questions
 WHERE
+<<<<<<< HEAD
 	contains(L.tags,"Q")
 SORT 
 	contains(L.tags,"Q/A")  ASC
+=======
+file = this.file
+Flatten
+file.lists AS L
+WHERE
+contains(L.tags,"Q")
+SORT
+contains(L.tags,"Q/A") ASC
+>>>>>>> 0d0faf3 (update research note)
 ```
 
 {% persist "notes" -%}
 {%- if isFirstImport %}
 
-## Summary 
+## Summary
 >[!summary]
 >
 {% endif %}
 {% endpersist %}
 
 %% ## Abstract
+<<<<<<< HEAD
  >{%- if abstractNote %}
 >{{abstractNote}}
  >{%- endif -%}.
+=======
+>{%- if abstractNote %}
+>{{abstractNote}}
+>{%- endif -%}.
+>>>>>>> 0d0faf3 (update research note)
 
 ## Notes
 > {%- if markdownNotes %}
@@ -68,20 +98,20 @@ SORT
 ## Annotations
 {% macro calloutHeader(color) -%}
 
-{%- if color == "#ff6666" -%} 
+{%- if color == "#ff6666" -%}
 Important
 {%- endif -%}
 
-{%- if color == "#5fb236" -%} 
+{%- if color == "#5fb236" -%}
 Reference
 {%- endif -%}
 
-{%- if color == "#2ea8e5" -%}  
-Definition 
+{%- if color == "#2ea8e5" -%}
+Definition
 {%- endif -%}
 
-{%- if color == "#a28ae5" -%} 
-Question 
+{%- if color == "#a28ae5" -%}
+Question
 - #Q
 {%- endif -%}
 {%- endmacro -%}
@@ -97,10 +127,12 @@ Question
 >[!quote{% if a.color %}|{{a.color}}{% endif %}] {{calloutHeader(a.color)}}
 >{%- endif -%}{% if a.imageRelativePath %}
 ![[{{a.imageRelativePath}}]] {% endif %}{% if a.annotatedText %}
-{{a.annotatedText}} [(p. {{a.pageLabel}})](zotero://open-pdf/library/items/{{a.attachment.itemKey}}?page={{a.pageLabel}}&annotation={{a.id}}){%- endif %}
+{{a.annotatedText}} [(p.
+{{a.pageLabel}})](zotero://open-pdf/library/items/{{a.attachment.itemKey}}?page={{a.pageLabel}}&annotation={{a.id}}){%-
+endif %}
 {%- if a.comment%}
 - Note: {{a.comment}}
 {%- endif %}
 {%- endfor %}
-{% endif %} 
+{% endif %}
 {% endpersist %}
