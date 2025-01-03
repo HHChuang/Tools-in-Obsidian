@@ -1,22 +1,13 @@
 ---
 cssclasses: research-note
-<<<<<<< HEAD
-tags:  {% if allTags %}{% for tag in allTags.split(',') %}
- {{ tag |trim}}{% endfor %}{% endif %}
-=======
 tags: {% if allTags %}{% for tag in allTags.split(',') %}
 {{ tag |trim}}{% endfor %}{% endif %}
->>>>>>> 0d0faf3 (update research note)
 citekey: {{citekey}}
 aliases: {% if title %}"{{title}}"{% endif %}
 year: {{date | format("YYYY")}}
 itemType: {%- if itemType %} {{itemType}} {%- endif %}
 {%- if itemType == "journalArticle" %}  
-<<<<<<< HEAD
-journal: "{{publicationTitle}}" 
-=======
 journal: "{{publicationTitle}}"
->>>>>>> 0d0faf3 (update research note)
 volume: {%- if volume %} {{volume}} {%- endif %}
 issue: {%- if issue %}  {{issue}} {%- endif %}
 {%- endif %}
@@ -35,16 +26,12 @@ DOI: {{DOI}} {%- endif %}
 ISBN: {{ISBN}} {%- endif %}
 {%- if archiveLocation %}  
 location: {{archiveLocation}} {%- endif %}
-<<<<<<< HEAD
-{% for type, creators in creators | groupby("creatorType") -%}{% if loop.first %}{% endif %}{{type | replace("interviewee", "author") | replace("director", "author") | replace("presenter", "author") | replace("podcaster", "author") | replace("programmer", "author") | replace("cartographer", "author") | replace("inventor", "author") | replace("sponsor", "author")  | replace("performer", "author") | replace("artist", "author")}}: "{%- for creator in creators -%}{%- if creator.name %}{{creator.name}}{%- else %}{{creator.lastName}}, {{creator.firstName}}{%- endif %}{% if not loop.last %}; {% endif %}{% endfor %}"{% if not loop.last %}
-=======
 {% for type, creators in creators | groupby("creatorType") -%}{% if loop.first %}{% endif %}{{type |
 replace("interviewee", "author") | replace("director", "author") | replace("presenter", "author") | replace("podcaster",
 "author") | replace("programmer", "author") | replace("cartographer", "author") | replace("inventor", "author") |
 replace("sponsor", "author") | replace("performer", "author") | replace("artist", "author")}}: "{%- for creator in
 creators -%}{%- if creator.name %}{{creator.name}}{%- else %}{{creator.lastName}}, {{creator.firstName}}{%- endif %}{%
 if not loop.last %}; {% endif %}{% endfor %}"{% if not loop.last %}
->>>>>>> 0d0faf3 (update research note)
 {% endif %}{%- endfor %}
 url: "{{url}}"
 zotero: "{{desktopURI}}"
@@ -56,11 +43,6 @@ TABLE WITHOUT ID
 link(L.link,string(L.position.start.line)) AS Line,
 L.text AS Questions
 WHERE
-<<<<<<< HEAD
-	contains(L.tags,"Q")
-SORT 
-	contains(L.tags,"Q/A")  ASC
-=======
 file = this.file
 Flatten
 file.lists AS L
@@ -68,7 +50,6 @@ WHERE
 contains(L.tags,"Q")
 SORT
 contains(L.tags,"Q/A") ASC
->>>>>>> 0d0faf3 (update research note)
 ```
 
 {% persist "notes" -%}
@@ -81,15 +62,9 @@ contains(L.tags,"Q/A") ASC
 {% endpersist %}
 
 %% ## Abstract
-<<<<<<< HEAD
- >{%- if abstractNote %}
->{{abstractNote}}
- >{%- endif -%}.
-=======
 >{%- if abstractNote %}
 >{{abstractNote}}
 >{%- endif -%}.
->>>>>>> 0d0faf3 (update research note)
 
 ## Notes
 > {%- if markdownNotes %}
