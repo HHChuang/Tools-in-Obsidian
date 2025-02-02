@@ -21,7 +21,7 @@
 >>	expense
 >>```
 > 
->> **Highlist spending**
+>> **Highest spending**
 >>```sqlseal
 >>TABLE moze = file(meta/csv/MOZE.csv)
 >>
