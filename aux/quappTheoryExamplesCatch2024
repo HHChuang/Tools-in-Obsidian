@@ -41,6 +41,7 @@ SORT
 >
 >May be related to [[maedaArtificialForceInduced2016|Artificial Force Induced Reaction (AFIR) Method for Exploring Quantum Chemical Potential Energy Surfaces]]?
 
+[^1]: An indicator for a catch bond can be a large movement of the involved stationary states of the PES under external force. [(p.4099)](zotero://open-pdf/library/items/XAVHD6YZ?page=4099&annotation=8TWHFRMM)
 
 
 ## Newton trajectory (NT)
@@ -98,19 +99,12 @@ The solution of this EoM and gradient is called Newton trajectory [(p. 4098)](zo
 ## Annotations
 %% begin annotations %%
 
-
-### Imported on 2025-02-22 7:43 am
-
-
+%% Import Date: 2025-02-22T07:46:40.073+01:00 %%
 - #Q $V_{f}(\mathbf{x})=V(\mathbf{x})-F\mathbf{f}^{T}\cdot \mathbf{x}$
 	- Note: how to define the foce in real observable? compare something in the measurment?
-
-### Imported on 2025-02-22 7:46 am
-
-[^1]: An indicator for a catch bond can be a large movement of the involved stationary states of the PES under external force. [(p.4099)](zotero://open-pdf/library/items/XAVHD6YZ?page=4099&annotation=8TWHFRMM)
 
 ![[meta/attachments/in zotero/quappTheoryExamplesCatch2024/image-3-x89-y192.png]] 
 
 %% end annotations %%
 
-%% Import Date: 2025-02-22T07:46:40.073+01:00 %%
+
