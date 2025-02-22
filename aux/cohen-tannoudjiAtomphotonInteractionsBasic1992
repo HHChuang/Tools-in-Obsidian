@@ -1,0 +1,630 @@
+---
+%% research note: The dash (-) in {\%- or -\%}  in the template is used to control whitespace trimming in Jinja2 templates (which is what Obsidian’s Templater use). %%
+cssclasses: research-note
+tags: 
+ proj/work/dimer2surf
+ input/ebook
+ sci/QED
+citekey: cohen-tannoudjiAtomphotonInteractionsBasic1992
+aliases: "Atom-photon interactions: basic processes and applications"
+year: 1992
+itemType:  book   
+location: New York  
+ISBN: 978-0-471-62556-8 978-0-471-29336-1
+author: "Cohen-Tannoudji, Claude; Dupont-Roc, Jacques; Grynberg, Gilbert"
+url: "https://onlinelibrary.wiley.com/doi/book/10.1002/9783527617197"
+zotero: "zotero://select/library/items/GVWJQZ2C"
+comment: "ch 4(OQS, ME), 5(Optical Bloch eqn)"
+---
+## Questions I have in this reference
+```dataview
+TABLE WITHOUT ID
+	link(L.link,string(L.position.start.line)) AS Line,
+	L.text AS Questions,
+	L.children.text AS Answer
+WHERE
+	file = this.file
+Flatten
+	file.lists AS L
+WHERE
+	contains(L.tags,"Q")
+SORT
+	contains(L.tags,"Q/A") ASC
+```
+
+%% begin notes %%
+## Summary 
+>[!summary]
+>- Chapter 4 Master equation 
+>	- Master equation giving the coarse-grained rate of variation of the density operator of $A$ can be derived simply and in a perturbative manner when the coupling $V$ between $A$ and $R$ has a *weak effect during the correlation time $\tau_{c}$* (motional narrowing condition[(p. 277)](zotero://open-pdf/library/items/ZA5VCBUA?page=277&annotation=S5AF9KEL)), of the fluctuations of $R$. [(p. 277)](zotero://open-pdf/library/items/ZA5VCBUA?page=277&annotation=2YJBKBCM)
+### 1. Transition amplitudes in electrodynamics 
+#### 1. Complement
+###### 1.A Perturbative calculation of transition amplitudes - some useful relations
+##### 1.B Description of the effect of a perturbation by an effective Hamiltonian 
+##### 1.C Discrete level coupled to a broad continuum: a simple model 
+### 2. A survey of some interaction processes between photons and atoms 
+### 3. Non-perturbative calculation of transition amplitudes 
+#### 3. Complement
+##### 3.A Analytic properties of the resolvent 
+### 4. Radiation considered as a reservoir: Master equation for the particles 
+#sci/OQS  #sci/model
+#### 4.A Introduction - overview 
+From Einstein's blackbody radiation model (1917); a two level system ($\ket{a},\ket{b}$, $E_{b}>E_{a}$) coupled to a radiation field. The rate equation (Master equation) is 
+- ![[meta/attachments/in zotero/cohen-tannoudjiAtomphotonInteractionsBasic1992/image-274-x131-y234.png]] 
+	- $N_{a}, N_{b}$: particles on this state
+	- $u(\omega)$: energy density of the radiation field  [(p. 274)](zotero://open-pdf/library/items/ZA5VCBUA?page=274&annotation=GGARRFRW)
+	- spontaneous emission: $A_{b\rightarrow a}$ 
+	- stimulated emission: $B_{b\rightarrow a}$ 
+	- absorption: $B_{a\rightarrow b}$ 
+- describe the subsystem by a density operator
+	- $\sigma=Tr_{R}\rho$
+		- Two possibilities to solve
+			1. Langevin equation; $T_{R}\gg \tau_{c}$ [(p. 275)](zotero://open-pdf/library/items/ZA5VCBUA?page=275&annotation=HHYBE22T)
+				- Friction force
+					- describes the cumulative effect of the collisions and which damps
+					- characteristic time $T_{R}$
+				- Langevin (instantaneous) force [(p. 276)](zotero://open-pdf/library/items/ZA5VCBUA?page=276&annotation=F2HZUXI6)
+					- fluctuations of the instantaneous force about its average value
+					- characteristic time $\tau_{c}$
+			2. Fokker-Planck equation  [(p. 276)](zotero://open-pdf/library/items/ZA5VCBUA?page=276&annotation=EVRLBFYS)
+				- evolution of the statistical distribution of the subsystem
+				- describing how the distribution function shifts and broadens under the influence of the collisions
+	- If there are two distinct time scales, the evolution of subsystem can be simplified as kinetic equation if we consider only a ==coarse-grained rate of variation==. [(p. 276)](zotero://open-pdf/library/items/ZA5VCBUA?page=276&annotation=MD3PX9JS)
+		- In the blackbody radiation, or radiation emitted by ordinary sources, appropriate of $\Delta \omega$ and $I$ (intensity of field) can lead to this condition $T_{R}\gg \tau_{c}$. [(p. 277)](zotero://open-pdf/library/items/ZA5VCBUA?page=277&annotation=WPWDFA43)
+			- $\tau_{c}=\frac{1}{\Delta \omega}$
+			- $Avg(T_{R})\propto \frac{1}{I}$
+#### 4.B. Derivation of the Master equation for a small system A interacting with a reservoir R
+$$
+	H= \color{blue} H_0 \color{black} + \color{red} V \color{black} = \color{blue} H_{A} +H_{R} \color{black} + \color{red} V 
+$$
+The evolution of global density is 
+$$
+	\dot{\rho}(t)=\frac{1}{i\hbar}[H,\rho(t)] 
+$$
+In the [[Interaction picture]] where the global system is $H_{A}+H_{R}$ so the time propagator is $\displaystyle U(t)=\exp\left( \frac{i(H_{A}+H_{R})t}{\hbar } \right)$, thus the evolution becomes
+$$
+	\dot{\rho}^{(I)}(t) =\frac{1}{i\hbar}[V^{(I)}(t),\rho^{(I)}(t)]
+$$
+Integrate above equation, 
+$$
+	\int^{t+\Delta t}_{t}  \dot{\rho}^{(I)}(\tau)\, d\tau = 
+	\frac{1}{i\hbar}\int^{t+\Delta t}_{t} dt'[V^{(I)}(t'),\rho^{(I)}(t')] 
+$$
+and we also know the expression for the difference of density in the interaction picture is 
+$$
+	\rho^{(I)}(t+\Delta t) -\rho^{(I)}(t) 
+	=\Delta\rho^{(I)}
+$$
+From above two relation, we can expanse the expression by iterate the definition $\rho^{(I)}(t_{2})=\rho^{(I)}(t_{1})+\Delta \rho$. 
+$$
+\begin{aligned}
+	\Delta\rho^{(I)}(t) 
+	&=\frac{1}{i\hbar}\int^{t+\Delta t}_{t} dt' [V^{(I)}(t'),\rho^{(I)}(t')] \\
+	&=\frac{1}{i\hbar}\int^{t+\Delta t}_{t} dt' [V^{(I)}(t'),
+	\rho^{(I)}(t) + \Delta\rho^{(I)} ]\\
+	&=\frac{1}{i\hbar}\int^{t+\Delta t}_{t} dt' [V^{(I)}(t'),
+	\rho^{(I)}(t)
+	+\frac{1}{i\hbar}\int^{t'}_{t} dt^" [V^{(I)}(t^"),\rho^{(I)}(t^")]]\\
+	&=\frac{1}{i\hbar}\int^{t+\Delta t}_{t} dt' [V^{(I)}(t'),
+	\rho^{(I)}(t)] \\
+	&\quad + \Big(\frac{1}{i\hbar}\Big)^2
+	\int^{ t+\Delta t}_{t} \, dt' \int^{t'}_{t} \, dt^" 
+	[V^{(I)}(t'),[V^{(I)}(t^"),\rho^{(I)}(t^")]]
+\end{aligned}
+$$
+
+^c21747
+
+Trace out the l.h.s $\Delta \sigma^{(I)}(t)\equiv Tr_{R}\Delta \rho^{(I)}(t)$ to get the difference of reduced density, 
+$$
+\begin{aligned}
+	\Delta \sigma^{(I)}(t) 
+	&= \frac{1}{i\hbar}\int^{t+\Delta t}_{t} dt' 
+	Tr_{R}[V^{(I)}(t'),\rho^{(I)}(t)] \\
+	&\quad + \Big(\frac{1}{i\hbar}\Big)^2
+	\int^{ t+\Delta t}_{t} \, dt' \int^{t'}_{t} \, dt^" 
+	Tr_{R}[V^{(I)}(t'),[V^{(I)}(t^"),\rho^{(I)}(t^")]]
+\end{aligned}
+$$
+
+^b166b2
+
+==Till here it is still exact==, now we make approximations. (Be careful about its argument)
+##### 1. The reservoir is almost static 
+$$
+	Tr_{A}\rho^{(I)}(t)=\sigma^{(I)}_{R}(t)\approx\sigma^{(I)}_{R}(0)=\sigma_{R}
+$$
+as the result, we have this commutation relation
+$$
+	[\sigma_{R},H_{R}]=0
+$$
+the reduced density of reservoir shares the same eigenbasis with the reservoir Hamiltonian. ($\sigma_{R}\ket{\mu}=p_{\mu}\ket{\mu}$ where $p_{\mu}$ is the probability occupation at that state)
+$$
+\begin{aligned}
+	1\cdot \sigma_{R}\cdot 1&= \Big( \sum_{\mu} \ket{\mu}\bra{\mu}   \Big )
+	\sigma_{R} \Big( \sum_{\nu} \ket{\nu}\bra{\nu}   \Big ) \\
+	&=\sum_{\mu \nu}\ket{\mu}\bra{\mu}p_{\nu}\ket{\nu}\bra{\nu} \\
+	&=\sum_{\mu \nu}p_{\nu}\ket{\mu}\delta_{\mu \nu}\bra{\nu} \\
+	&=\sum_{\mu}p_{\mu}\ket{\mu}\bra{\mu}  
+\end{aligned}
+$$
+Because it is thermodynamic equilibrium,
+$$
+	\sigma_{R}=\sum_{\mu} \frac{e^{-\beta E_{\mu}}}{Z} \ket{\mu} \bra{\mu}  
+$$
+
+^c20906
+
+ and $Z$ is the partition function
+ 
+##### 2. Reservoir observable: one-time and two-time average
+- #Q think here the observable means operator that any operator can be factorised. But the author use $A$ and $H_{A}$?
+Write the observable of interaction $V$ as a product of system $A$ and reservoir $R$ .
+
+$$
+	V=-\sum_{i}A_{i}R_{i}\approx -AR
+$$
+
+Those observables can also be represented in interaction picture. 
+#Q ![[meta/attachments/in zotero/cohen-tannoudjiAtomphotonInteractionsBasic1992/image-281-x62-y248.png]] 
+
+###### One-time average
+
+==We assume that the average value of $R$ in the state $\sigma_{R}$, of $R$ is zero== [(p. 281)](zotero://open-pdf/library/items/ZA5VCBUA?page=281&annotation=23XW7DJU)
+Note that average value is calculated as $\text{avg}(A)=\frac{\sum_i^N a_{i}}{N}$, and the definition of trace is $Tr{A}=\sum_{i}^Na_{i}$. So we can rewrite the average value as $\text{avg}(A)=\frac{Tr{A}}{N}$ and here there is only one reservoir operator $R_{i}=R$ (i.e. $N=1$).
+$$
+\begin{aligned}
+	Tr[\sigma_{R}\cdot1\cdot R\cdot 1] &= Tr[
+		\sigma_{R}
+		e^{\frac{-iH_{R}t}{\hbar}} \color{red}e^{\frac{iH_{R}t}{\hbar}}
+		R e^{\frac{-iH_{R}t}{\hbar}} \color{black} e^{\frac{iH_{R}t}{\hbar}}
+	] \\
+	&= Tr[\sigma_{R} 
+		e^{\frac{-iH_{R}t}{\hbar}}
+		R^{(I)}(t)
+		e^{\frac{iH_{R}t}{\hbar}}
+	] \\
+	&=Tr[e^{\frac{-iH_{R}t}{\hbar}} 
+		\sigma_{R}
+		R^{(I)}(t)
+		e^{\frac{iH_{R}t}{\hbar}}
+	]\\
+	&=Tr[\sigma_{R}R^{(I)}(t)] 
+\end{aligned}
+$$
+
+In the first line, I just add $\displaystyle 1=e^{\frac{-iH_{R}t}{\hbar}} e^{\frac{iH_{R}t}{\hbar}}$ in both sides, and then bring the interaction picture of the reservoir observable in the second line. In the third line, because reservoir is approximated as a stationary state $[\sigma_{R},H_{R}]=0$, we can swap the order of operator which leads to the forth line.  
+
+- #Q/A why the fourth line is zero? even $\sigma_{R}$ is time independent, but why it is commute with R? It is the average value.
+	$$
+		Tr[R,\sigma_{R}]= Tr[R(0),\sigma^{equil}_{R}] 
+		=\sum_{i} \frac{e^{-\beta E_{i}}}{Z} \bra{i}R(0)\ket{i} \approx 0
+	$$
+	At t=0, the environment is thermal equilibrium s.t. the probability at each state fulfils the Boltzmann distribution. We can set the average value as zero by shifting the energy since we only care the difference of energy between two quantities (correlation function). Because $Tr[\sigma_{R}R^{(I)}(t)]=Tr[\sigma_{R}R]$, $$Tr[\sigma_{R}R^{(I)}(t)]=0$$ At any point of time, the average value of observable at specific environmental state is zero. 
+	
+
+###### Two-time average
+$$
+	g(t',t^")=Tr[\sigma_{R}R^{(I)}(t')R^{(I)}(t^")]
+$$
+
+^2e432f
+
+- measure the average value of $R$ in state $\sigma_{R}$ at time $t'$ and $t^"$.
+- Physical meaning of $g(t',t^")$  [(p. 282)](zotero://open-pdf/library/items/ZA5VCBUA?page=282&annotation=RWIFQCDR)
+	- real part
+		- symmetric correlation function 
+		- dynamics of the fluctuations of $R$ in the state $\sigma_{R}$
+	- imaginary part
+		- linear susceptibility
+
+Use the trace invariance 
+$$
+	g(t',t^")=g(t'-t^")=g(\tau)
+$$
+From the definition of $\sigma_{R}$ in equation[[#^c20906]], it becomes 
+$$
+\begin{aligned}
+	g(\tau) &= Tr[\sigma_{R}R^{(I)}(\tau)R^{(I)}(0)] \\
+	&=Tr\Big[
+		\sum_{\mu}p_{\mu}\ket{\mu}\bra{\mu}  R^{(I)}(\tau)R^{(I)}(0)
+	\Big] \\
+	&= Tr\Big[
+		\sum_{\mu}\bra{\mu}  R^{(I)}(\tau)R^{(I)}(0)p_{\mu}\ket{\mu}
+	\Big] \\
+	&=\sum_{\mu \nu} p_{\mu}
+		\bra{\mu} e^{\frac{iH_{R}\tau}{\hbar}} R e^{\frac{-iH_{R}\tau}{\hbar}}\ket{\nu} \bra{\nu}R\ket{\mu} \\
+	&= \sum_{\mu \nu} p_{\mu} |R_{\mu \nu}|^2  e^{i\omega_{\mu \nu}\tau}
+\end{aligned}
+$$
+where we know $R^{(I)}(0)=R$, and 
+$$
+\begin{aligned}
+	&R_{\mu \nu}\equiv \bra{\nu}R\ket{\mu} \\
+	&\omega_{\mu \nu}\equiv \omega_{\mu}-\omega_{\nu}
+\end{aligned}
+$$
+Because $p_{\mu}$ and $|R_{\mu \nu}|^2$ are real, so 
+$$
+	g(-\tau)=\sum_{\mu \nu} p_{\mu} |R_{\mu \nu}|^2  e^{-i\omega_{\mu \nu}\tau}=g(\tau)^*
+$$
+- assumption  [(p. 283)](zotero://open-pdf/library/items/ZA5VCBUA?page=283&annotation=LMAZS4B6)
+	- $g(\tau)\rightarrow 0$ when $\tau$ increases. 
+		-  $\tau_{c}$ the order of magnitude of the width in $\tau$ 
+		- $\tau_{c}$: bath correlation time[^2]
+	- $R$ is in a stationary state and exerts on $A$ “force” fluctuating about a zero average value with a short correlation time $\tau_{c}$
+
+[^2]: page 8 of [[ppl - Quantum dynamics and spectroscopy#5. Redfield theory]]eory]]
+
+##### 3. Perturbative calculation of the coarse-grained rate of variation of the small system 
+- Up to this point, no approximation has been introduced and the Equation is exact. [(p. 280)](zotero://open-pdf/library/items/ZA5VCBUA?page=280&annotation=TVA67CUF)
+Recall that the difference of reduced density in interaction picture is (c.f. equation[[#^b166b2]] ) 
+
+$$
+\begin{aligned}
+	\Delta \sigma^{(I)}(t) 
+	&= \frac{1}{i\hbar}\int^{t+\Delta t}_{t} dt' 
+	Tr_{R}[V^{(I)}(t'),\rho^{(I)}(t)] \\
+	&\quad + \Big(\frac{1}{i\hbar}\Big)^2
+	\int^{ t+\Delta t}_{t} \, dt' \int^{t'}_{t} \, dt^" 
+	Tr_{R}[V^{(I)}(t'),[V^{(I)}(t^"),\rho^{(I)}(t^")]]
+\end{aligned}
+$$
+
+1. approximation $V$ is small and $T_{R}\gg\Delta t$  
+	- i.e. $\Delta t$ is small
+	- $T_{R}$ is the evolution time of $\sigma^{(I)}$
+	- Such an approximation is equivalent to an iteration of (B.5) in which only terms up to second order in V are retained. [(p. 283)](zotero://open-pdf/library/items/ZA5VCBUA?page=283&annotation=95EGBM3K)
+
+Based on the above approximation, we can replace $\rho^{(I)}(t^")$ to $\rho^{(I)}(t)$.
+$$
+\begin{aligned}
+	\Delta \sigma^{(I)}(t) 
+	&= \frac{1}{i\hbar}\int^{t+\Delta t}_{t} dt' 
+	Tr_{R}[V^{(I)}(t'),\color{red}\rho^{(I)}(t)\color{black}] \\
+	&\quad + \Big(\frac{1}{i\hbar}\Big)^2
+	\int^{ t+\Delta t}_{t} \, dt' \int^{t'}_{t} \, dt^" 
+	Tr_{R}[V^{(I)}(t'),[V^{(I)}(t^"),\color{red}\rho^{(I)}(t)\color{black}]]
+\end{aligned}
+$$
+
+^b90f08
+
+We rewrite this quantity as 
+$$
+\begin{aligned}
+	\rho^{(I)}(t)&=Tr_{R}\rho^{(I)}(t)\otimes 
+	Tr_{A}\rho^{(I)}(t)+\rho^{(I)}_{\text{correl}}(t) \\
+	&\approx \sigma^{(I)}(t) \otimes \sigma_{R}
+\end{aligned}
+$$
+- $\rho^{(I)}_{\text{correl}}(t)$
+	- is equal to the difference between $\rho^{(I)}(t)$ and the product of the reduced density operators of $A$ and $R$, describes the correlations that exist between $A$ and $R$ at time t. [(p. 283)](zotero://open-pdf/library/items/ZA5VCBUA?page=283&annotation=F76WUYM5)
+
+2. approximation $t_{c}\ll\Delta t$  [(p. 283)](zotero://open-pdf/library/items/ZA5VCBUA?page=283&annotation=FTT88AX4)
+	- the correlations between $A$ and $R$ disappear after a time $t_{c}$
+	- $\rho^{(I)}_{\text{correl}}(t) \approx 0$
+
+ >[!important] Summarise of approximation 1 and 2
+>$$
+>\tau_{c} \ll\Delta t\ll T_{R}
+>$$
+>- $\tau_{c}$: bath correlation time[^2]; the correlations between $A$ and $R$ disappear after a time $\tau_{c}$
+>- $\Delta t$: duration time of $\sigma^{(I)}$ being perturbed
+>- $T_{R}$: evolution time of $\sigma^{(I)}$
+
+^eacdd8
+
+- #Q/A  Now, in equation[[#^b90f08]], the first term is zero where the red part $Tr[R^{(I)}(t),\sigma_{R}]$ is zero (assume the average value of $R$ in the state $\sigma_{R}$ is zero. c.f. [[cohen-tannoudjiAtomphotonInteractionsBasic1992#One-time average| one-time average]]).
+$$
+\begin{aligned}
+	Tr_{R}[V^{(I)}(t),\rho^{(I)}(t)] &\approx 
+	 Tr_{R}[V^{(I)}(t),e^{-i\frac{(H_{A}+H_{R})}{\hbar }t}
+		\,\rho_{A}\otimes\rho_{R} \, e^{i\frac{(H_{A}+H_{R})}{\hbar }t}] \\
+	&=Tr_{R}[V^{(I)}(t),\sigma^{(I)}(t) \otimes \sigma_{R}]\\
+	&=Tr_{R}[V^{(I)}(t),\sigma^{(I)}(t)]\cdot
+	Tr_{R}[V^{(I)}(t),\sigma_{R}] \\
+	&=Tr_{R}[V^{(I)}(t),\sigma^{(I)}(t)]\cdot 
+	A^{(I)}(t)(\color{red}Tr[R^{(I)}(t),\sigma_{R}]\color{black})\\
+	&=Tr_{R}[V^{(I)}(t),\sigma^{(I)}(t)]\cdot 0 \\
+	&=0
+\end{aligned}
+$$
+
+ Then the equation[[#^b90f08]] has the second term only, with the approximation $\rho^{(I)}(t)\approx\sigma^{(I)}(t) \otimes \sigma_{R}$, it becomes 
+$$
+	\Delta \sigma^{(I)}(t) 
+	= \Big(\frac{1}{i\hbar}\Big)^2
+	\int^{ t+\Delta t}_{t} \, dt' \int^{t'}_{t} \, dt^" 
+	Tr_{R}[V^{(I)}(t'),[V^{(I)}(t^"),\sigma^{(I)}(t) \otimes \sigma_{R}]]
+$$
+
+
+- Corase-grained rate  [(p. 284)](zotero://open-pdf/library/items/ZA5VCBUA?page=284&annotation=LFAMLS3T) 
+	- divide $\Delta t$ at both side of the above equation
+	- because it can be considered to be the time average of the instantaneous rate $\frac{d\sigma^{(I)}}{dt}$ over an interval $\Delta t$.
+		- $\displaystyle \frac{\Delta \sigma^{(I)}}{\Delta t}=\frac{\sigma^{(I)}(t+\Delta t)-\sigma^{(I)}(t)}{\Delta t}=\frac{1}{\Delta t}\int^{t+\Delta t}_{t}  \, dt' \frac{d\sigma^{(I)}}{dt'}$^5bf25f
+	- $\displaystyle \frac{\Delta \sigma^{(I)}}{\Delta t}$ only depends on the state $\sigma^{(I)}(t)$
+		- All the rapid variations of the instantaneous rate occurring on a time scale smaller than $\Delta t$ are smoothed out in such an average. [(p. 284)](zotero://open-pdf/library/items/ZA5VCBUA?page=284&annotation=RHYJ6LZP)
+		- examined with a time resolution that is not too high, the evolution of $A$ depends only on the present and not on the past (Markov process). [(p. 284)](zotero://open-pdf/library/items/ZA5VCBUA?page=284&annotation=Y8FV6ERB)
+
+$$
+	\frac{\Delta \sigma^{(I)}}{\Delta t}
+	= -\frac{1}{\hbar^2}\frac{1}{\Delta t}
+	\int^{ t+\Delta t}_{t} \, dt' \int^{t'}_{t} \, dt^" 
+	Tr_{R}[V^{(I)}(t'),[V^{(I)}(t^"),\sigma^{(I)}(t) \otimes \sigma_{R}]]
+$$
+
+^c20908
+
+In the above equation, we know that $V^{(I)}=A^{(I)}R^{(I)}$ where $A$ is the system and $R$ is the reservoir, and then trace the reservoir's degrees of freedom out 
+
+- #Q/A the first line is just expand the commutator, but I don't understand the second line? Need to expand it explicitly because of the order.
+$$
+\begin{aligned}
+	&Tr_{R}[V^{(I)}(t'),[V^{(I)}(t^"),\sigma^{(I)}(t) \otimes \sigma_{R}]] \\
+	&=Tr_{R}[V^{(I)}(t'),[V^{(I)}(t^")\sigma^{(I)}(t) \otimes \sigma_{R}
+		-\sigma^{(I)}(t) \otimes \sigma_{R}V^{(I)}(t^")]\\
+	&=Tr_{R}\Big\{
+		V^{(I)}(t')V^{(I)}(t^")\sigma^{(I)}(t) \otimes \sigma_{R} \\
+	&\quad \quad -V^{(I)}(t')\sigma^{(I)}(t) \otimes \sigma_{R}V^{(I)}(t^")\\
+	&\quad \quad -V^{(I)}(t^")\sigma^{(I)}(t) \otimes \sigma_{R}V^{(I)}(t')\\
+	&\quad \quad+ \sigma^{(I)}(t) \otimes \sigma_{R}V^{(I)}(t^")V^{(I)}(t')
+	\Big\}\\
+	&=A^{(I)}(t')A^{(I)}(t^")\sigma^{(I)}(t)\cdot 
+		\color{red}Tr[R^{(I)}(t')R^{(I)}(t^")\sigma_{R}]\\
+	&\quad\quad -A^{(I)}(t')\sigma^{(I)}(t)A^{(I)}(t^")\cdot 
+		\color{red} Tr[R^{(I)}(t')\sigma_{R}R^{(I)}(t^")]\\
+	&\quad\quad -A^{(I)}(t^")\sigma^{(I)}(t)A^{(I)}(t')\cdot 
+		\color{red} Tr[R^{(I)}(t^")\sigma_{R}R^{(I)}(t')]\\
+	&\quad\quad + \sigma^{(I)}(t)A^{(I)}(t^")A^{(I)}(t')\cdot 
+		\color{red} Tr[\sigma_{R}R^{(I)}(t^")R^{(I)}(t')]\\
+	&=A^{(I)}(t')A^{(I)}(t^")\sigma^{(I)}(t)\cdot \color{red} g(t',t^") \\
+	&\quad\quad - A^{(I)}(t')\sigma^{(I)}(t)A^{(I)}(t^")\cdot 
+		\color{red} g(t',t^")\\
+	&\quad\quad - A^{(I)}(t^")\sigma^{(I)}(t)A^{(I)}(t')\cdot 
+		\color{red}g(t^",t') \\
+	&\quad\quad + \sigma^{(I)}(t)A^{(I)}(t^")A^{(I)}(t')\cdot 
+		\color{red} \color{red}g(t^",t')\\
+	&= g(t',t^")\Big(
+		A^{(I)}(t')A^{(I)}(t^")\sigma^{(I)}(t)-A^{(I)}(t')\sigma^{(I)}(t)A^{(I)}(t^") 
+	\Big) \\
+	&\quad\quad +g(t^",t') \Big(
+		\sigma^{(I)}(t)A^{(I)}(t^")A^{(I)}(t') - A^{(I)}(t^")\sigma^{(I)}(t)A^{(I)}(t')
+	\Big)
+\end{aligned}
+$$
+
+#Q/A where $g(t',t^")$ is the two time average defining in equation [[#^2e432f]], and we know that $g(t',t^")=g(\tau)$ for $\tau=t'-t^"$. Because $g(\tau)$ decreases very rapidly with $\tau$, it is convenient to change the variables of integration, switching from the variables t‘ and t“ to the variables $\tau$ and t‘. [(p. 285)](zotero://open-pdf/library/items/ZA5VCBUA?page=285&annotation=NU4Q2J3Q)
+>[!multi-column]
+>>**Switch variable $(t',t^")\rightarrow(\tau,t')$ and change integration boundary**
+>>
+>>![[meta/attachments/in zotero/cohen-tannoudjiAtomphotonInteractionsBasic1992/image-285-x162-y464.png]] 
+>>- #Q/A For fixed T, we can integrate over t’ from t + T to $t + \Delta t$, then integrate over $\tau$ from 0 to  $t + \Delta t$, [(p. 285)](zotero://open-pdf/library/items/ZA5VCBUA?page=285&annotation=G6BTPH2W)
+>>	- $\tau \equiv t'-t^"$ and $\tau\in[0,\Delta t]$
+>>		- $\tau_{min}=0$
+>>			- $\tau=0$ when $t'=t^"$
+>>			- $\tau>0$ because $t^"_{max}=t'$ s.t. $t'>t^"$
+>>		- $\tau_{max}=t'_{max}-t^"_{{min}}=t+\Delta t-t=\Delta t$
+>>	- $t'\in[t,t+\Delta t]$ and $t^" \in [t,t']$
+>>		- from $\tau=t'-t^"$ we know $t'=t^"+\tau$, 
+>>			- $t'_{min}=t$ and $\tau_{min}=0$
+>>			- $t'_{max}=t+\Delta t$ and $\tau_{max}=\Delta t$
+>>			- so we can change the boundary to $t'\in[t+\tau,t+\Delta t]$
+>>- at the diagonal $0--B$
+>>	- $t'=t^"$ and $\tau=0$
+>
+>>Domain of integration $\int_{t}^{t+\Delta t}  \, dt'\int^{t'}_{t}  \, dt^"$
+>>![[meta/attachments/in zotero/cohen-tannoudjiAtomphotonInteractionsBasic1992/image-285-x154-y161.png]] 
+>>- Compare $\tau$ and $\tau_{c}$, and we know $\tau\gg\tau_{c}$
+>>	- $\tau\in[0,\Delta t]$ where $\Delta t$ is the duration time of system being perturbed.
+>>	- $\tau_{c}$ is the correlation between system and bath disappear after a time $\tau_{c}$
+>>	- the time integral only contribute before $\tau_{c}$ and then goes to zero, so 
+>>		- $\int_{0}^{\Delta t} d\tau\approx \int_{0}^{\tau_{c}}d\tau$
+>>		- we can also change it to $$\int_{0}^{\infty} d\tau$$
+
+From equation [[#^c20908]], we change variables ($t^"=t'-\tau$) and integration boundary,  
+$$
+\begin{aligned}
+	\frac{\Delta \sigma^{(I)}}{\Delta t}
+	&= -\frac{1}{\hbar^2} \int^\infty_{0}  \, d\tau
+	\frac{1}{\Delta t}\int^{t+\Delta t}_{t}  \, dt' \\
+	 &\quad \times \Big(
+	 g(\tau)
+	 \{
+		 A^{(I)}(t')A^{(I)}(t'-\tau)\sigma^{(I)}(t)
+		 -A^{(I)}(t'-\tau)\sigma^{(I)}(t)A^{(I)}(t')
+	 \} \\
+	 &\quad +g(-\tau)
+	 \{
+		\sigma^{(I)}(t) A^{(I)}(t'-\tau)A^{(I)}(t')
+		-A^{(I)}(t')\sigma^{(I)}(t) A^{(I)}(t'-\tau)
+	 \}
+	 \Big)
+\end{aligned}
+$$
+
+Now we need to project the operator over a basis of states.
+
+##### 4. Master equation in the energy-state basis  
+Use the system eigenstate of $\hat{H}_{A}$ as the basis, take the first term as an example to project
+$$
+\begin{aligned}
+	&g(\tau)A^{(I)}(t')A^{(I)}(t'-\tau)\sigma^{(I)}(t) \\
+	&=g(\tau)\sum_{a} \ket{a}\bra{a}  A^{(I)}(t') 
+		\sum_{b}\ket{b}\bra{b}  A^{(I)}(t'-\tau)
+		\sum_{c} \ket{c}\bra{c} \sigma^{(I)}(t) \sum_{d} \ket{d}\bra{d}\\
+	&=g(\tau)\sum_{abcd} A_{ab}^{(I)}(t') A^{(I)}_{{bc}}(t'-\tau)
+		\sigma^{(I)}_{{cd}}(t) \ket{a}\bra{d}      
+\end{aligned}
+$$
+
+To get consistent $\sigma^{(I)}_{{cd}}(t)$ for four terms, 
+$$
+\begin{aligned}
+	&\color{red}\sum_{cd}
+		\color{black} g(\tau) 
+	 \{
+		 A^{(I)}(t')A^{(I)}(t'-\tau) \color{red}\ket{c}\bra{c} 
+		 \color{black} \sigma^{(I)}(t) 
+		 \color{red} \ket{d}\bra{d}
+		 \color{black} -A^{(I)}(t'-\tau)
+		 \color{red}\ket{c}\bra{c}
+		 \color{black} \sigma^{(I)}(t) 
+		 \color{red} \ket{d}\bra{d}
+		 \color{black}A^{(I)}(t')
+	 \} \\
+	 &\quad +g(-\tau)
+	 \{
+		\color{red}\ket{c}\bra{c}
+		\color{black}\sigma^{(I)}(t) 
+		\color{red} \ket{d}\bra{d} 
+		\color{black} A^{(I)}(t'-\tau)A^{(I)}(t') -A^{(I)}(t')
+		\color{red}\ket{c}\bra{c}
+		\color{black}\sigma^{(I)}(t) 
+		\color{red} \ket{d}\bra{d} 
+		\color{black} A^{(I)}(t'-\tau)
+	 \} \\
+	&= \color{blue}\sum_{ab}\color{red}\sum_{cd}\color{black} g(\tau) 
+	\{
+		\color{blue}\ket{a}\bra{a}\color{black}A^{(I)}(t')
+		\color{blue}\ket{b}\bra{b}\color{black}A^{(I)}(t'-\tau) \color{red} \ket{c} \sigma_{cd}^{(I)}(t) \bra{d} 
+		-\color{blue}\ket{a}\bra{a}\color{black}\color{black}A^{(I)}(t'-\tau) 
+		\color{red} \ket{c}\sigma_{cd}^{(I)}(t) \bra{d} 
+		\color{black}A^{(I)}(t') \color{blue}\ket{b}\bra{b}
+	\} \\
+	 &\quad +g(-\tau)
+	 \{
+		 \color{red} \ket{c}\sigma_{cd}^{(I)}(t) \bra{d} 
+		 \color{black}A^{(I)}(t'-\tau) \color{blue}\ket{a}\bra{a}
+		 \color{black}A^{(I)}(t') \color{blue}\ket{b}\bra{b}
+		 \color{black} -
+		 \color{blue}\ket{a}\bra{a} \color{black}A^{(I)}(t')
+		 \color{red} \ket{c}\sigma_{cd}^{(I)}(t) \bra{d} 
+		 \color{black}A^{(I)}(t'-\tau) \color{blue}\ket{b}\bra{b}
+	\} \\
+	&=\sum_{abcd}g(\tau)\sigma_{cd}^{(I)}(t)
+	\{
+	  A^{(I)}_{ab}(t') A^{(I)}_{bc}(t'-\tau) \ket{a}\bra{d}  
+	  -A^{(I)}_{ac}(t'-\tau)A^{(I)}_{db}(t') \ket{a}\bra{b}  
+	\} \\
+	 &\quad +g(-\tau)\sigma_{cd}^{(I)}(t)
+	 \{
+		 A^{(I)}_{da}(t'-\tau)A^{(I)}_{ab}(t')\ket{c}\bra{b} 
+		 -A^{(I)}_{ac}(t')A^{(I)}_{db}(t'-\tau)\ket{a}\bra{b} 
+	 \} \\
+	 
+\end{aligned}
+$$
+
+- secular approximation
+	- Approximation of matrix elements to **neglecting rapidly oscillating terms**.
+	- The secular approximation is often **synonymous** with the **Rotating Wave Approximation (RWA)** in quantum optics and NMR.
+- Discuss different region of $\omega$
+- Transform representation picture to Schrodinger representation 
+	- $\sigma_{ab}(t)=e^{-i\omega_{ab}t}\sigma^{(I)}_{ab}(t)$
+	- In the Schrodinger representation, the master equation, expanded over the basis of eigenstates of HA, has the structure of a linear differential system with time-independent coefficients. [(p. 288)](zotero://open-pdf/library/items/ZA5VCBUA?page=288&annotation=PF63U97B)
+
+
+ ==Biggest difference between their equation and mine: the correlation function $g(\tau)$ is system basis independent , while, mine is system basis dependent.==
+#### 4.C Physical content of the Master equation 
+##### 1. Evolution of populations 
+##### 2. Evolution of coherences
+#### 4.D Discussion of the approximation 
+##### 1. Order of magnitude of the evolution time for $A$
+##### 2. Condition for having two time scales 
+##### 3. Validity condition for the perturbative expansion 
+##### 4. Factorization of the total density operator at time $t$
+#### 4.E Application to a two-level atom coupled to the radiation field 
+##### 1. Evolution of internal degrees of freedom 
+##### 2. Evolution of atomic velocities 
+#### 4. Complement 
+##### 4.A Fluctuations and linear response application to radiative processes 
+##### 4.B Master equation for a damped harmonic oscillator 
+##### 4.C Quantum Langevin equations for a simple physical system 
+### 5. Optical Bloch Equations
+>[!introduction]
+>- Scenario: 
+>	- quasi-resonance  [(p. 373)](zotero://open-pdf/library/items/ZA5VCBUA?page=373&annotation=EZ4SWG6V): $|\omega_{L}-\omega_{0}| \approx \omega_{0}$ 
+>		- the atom interacts with a incident *monochromatic radiation field*[^1]  whose frequency ($\omega_{L}$) is very close to an atomic eigenfrequency ($\omega_{0}$) [(p. 369)](zotero://open-pdf/library/items/ZA5VCBUA?page=369&annotation=U4XCJPA3)
+>		
+>	- Use laser sources in experiments
+>		- the incident light intensity is sufficiently high to “saturate” the atomic transition [(p. 369)](zotero://open-pdf/library/items/ZA5VCBUA?page=369&annotation=IECAPQFY)
+>		- the corresponding Rabi frequency ($\Omega$) is then large compared with the natural width of the levels
+> - Methods that are not able to be used [(p. 370)](zotero://open-pdf/library/items/ZA5VCBUA?page=370&annotation=G77XT2TD)
+> 	-  because the radiation field can no longer be considered as a reservoir. 
+> 		- The correlation time of the monochromatic incident radiation is actually infinitely long. 
+> 	sa	- It is thus impossible to derive equations analogous to Equations (E.15) and (E.21) in Chapter IV  
+> - The **Optical Bloch Equations** describes the temporal evolution of the atomic density matrix is a sum of two terms [(p. 370)](zotero://open-pdf/library/items/ZA5VCBUA?page=370&annotation=BARAHH97)
+> 	- the contribution of the coupling with the incident wave 
+> 	- and the contribution of the coupling with the empty modes. 
+
+[^1]: Monochromatic radiation:  electromagnetic radiation with a single constant frequency or wavelength. [(wiki)](https://en.wikipedia.org/wiki/Monochromatic_radiation)
+
+- [[Optical Bloch equation of a two-level atom]]
+
+### 6. The dressed atom approach
+
+#### 6.A Introduction: the dressed atom 
+#### 6.B Energy levels of the dressed atom 
+#### 6.C Resonance fluorescence interpreted as a radiative cascade of the dressed atom 
+#### 6.D Master equation for the dressed atom 
+#### 6.E Discussion of a few applications 
+### Appendix: Quantum electrodynamics in the coulomb gauge - summary of the essential results 
+%% end notes %%
+
+## Annotations
+%% begin annotations %%
+
+
+
+### Imported on 2024-04-16 2:21 pm
+
+
+
+>[!quote|#e56eee] 
+>
+if the quantum field is initially in a coherent state. [(p. 371)](zotero://open-pdf/library/items/ZA5VCBUA?page=371&annotation=FXDJTRZJ)
+- Note: Q: what is coherent state in a quantum field?
+
+
+A: a state of the quantized (harmonic oscillator, second quantization)
+
+qlqctromagnetic field
+
+More precisely, we consider a single atom interacting with “macroscopic” incident radiation such as laser light. We are then justified in neglecting the absorption or amplification of such radiation by the atom. Our treatment therefore excludes situations where an ensemble of atoms interacts with a field originating from the atoms themselves. Such a situation is encountered, for example, for atoms inside a cavity, or for optically dense media. [(p. 371)](zotero://open-pdf/library/items/ZA5VCBUA?page=371&annotation=RD2AAXDH)
+
+![[meta/attachments/in zotero/cohen-tannoudjiAtomphotonInteractionsBasic1992/image-372-x167-y472.png]] 
+
+>[!quote|#ff6666] Important
+>
+The approximation of independent rates of variation consists of independently adding the rates of variation of u associated with the two previous couplings -d . gocos w,t and - d El(01, and calculated as if each coupling acted alone. [(p. 372)](zotero://open-pdf/library/items/ZA5VCBUA?page=372&annotation=NZ2Q7WMD)
+
+
+The frequency 0, is called the Rabi frequency. It characterizes the strength of the coupling between the atom and the incident wave. [(p. 372)](zotero://open-pdf/library/items/ZA5VCBUA?page=372&annotation=7Y3VDB27)
+
+Such an approximation is valid if the effect of the coupling with this radiation can be neglected during the correlation time T, of the vacuum fluctuations that are responsible for spontaneous emission. [(p. 373)](zotero://open-pdf/library/items/ZA5VCBUA?page=373&annotation=NSB98XXH)
+
+Note that such a condition already underlies the approximation which takes into account only two of the atomic levels. [(p. 373)](zotero://open-pdf/library/items/ZA5VCBUA?page=373&annotation=Q6YJB55J)
+
+quasi-resonant with the transition [(p. 373)](zotero://open-pdf/library/items/ZA5VCBUA?page=373&annotation=EZ4SWG6V)
+ 
+### Imported on 2024-07-10 5:03 pm
+
+
+In other words, u, has no nondiagonal elements between eigenstates of H, with different eigenvalues and can therefore be considered as a [(p. 280)](zotero://open-pdf/library/items/ZA5VCBUA?page=280&annotation=G4LHCQ4U)
+
+statistical mixture of eigenstates Ip) of HR [(p. 281)](zotero://open-pdf/library/items/ZA5VCBUA?page=281&annotation=2NUGCVIT)
+
+We will neglect this effect and retain only the terms coupling AGUb/Atto Gcd with lwab - wcdl << l/At, terms called secular and for which f = 1. Finally, with this “secular approximation”, [(p. 287)](zotero://open-pdf/library/items/ZA5VCBUA?page=287&annotation=U26W9JHH)
+- Note: wiki: Secular (Latin: saeculum, lit. ' century') approximation is <b>an approximation valid for long times</b>
+ 
+### Imported on 2025-02-22 7:36 am
+
+Indeed, if in (B.9) we replace &t”> and & t ) by (B.28) and divide both sides of the equation by- A t , we obtain [the first term of (B.9) is zero, according (B.20)1 [(p.284)](zotero://open-pdf/library/items/ZA5VCBUA?page=284&annotation=239Y8HZL)
+
+![[meta/attachments/in zotero/cohen-tannoudjiAtomphotonInteractionsBasic1992/image-286-x192-y360.png]] 
+
+%% end annotations %%
+
+%% Import Date: 2025-02-22T07:36:44.927+01:00 %%
