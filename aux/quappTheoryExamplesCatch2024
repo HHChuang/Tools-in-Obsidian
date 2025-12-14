@@ -1,0 +1,110 @@
+---
+%% research note: The dash (-) in {\%- or -\%}  in the template is used to control whitespace trimming in Jinja2 templates (which is what Obsidian’s Templater use). %%
+cssclasses: research-note
+tags: 
+ sci/pes
+citekey: quappTheoryExamplesCatch2024
+aliases: "Theory and Examples of Catch Bonds"
+year: 2024
+itemType:  journalArticle   
+journal: "The Journal of Physical Chemistry B"
+volume:   128 
+issue:    17    
+pages: 4097-4110  
+DOI: 10.1021/acs.jpcb.4c00468
+author: "Quapp, Wolfgang; Bofill, Josep Maria"
+url: "https://pubs.acs.org/doi/10.1021/acs.jpcb.4c00468"
+zotero: "zotero://select/library/items/BFUFB8BJ"
+comment: "Using Newton trajectory to explain why catch bond (with extra force, the lifetime of bonding is longer) forms."
+---
+## Questions I have in this reference
+```dataview
+TABLE WITHOUT ID
+	link(L.link,string(L.position.start.line)) AS Line,
+	L.text AS Questions,
+	L.children.text AS Answer
+WHERE
+	file = this.file
+Flatten
+	file.lists AS L
+WHERE
+	contains(L.tags,"Q")
+SORT
+	contains(L.tags,"Q/A") ASC
+```
+
+%% begin notes %%
+
+## Summary 
+>[!summary]
+>Catch bond is a collection of bonds which have a longer lifetime with external forces. Using the Newton trajectory, the potential change topography such that the external forces increase the barrier height[^1]. 
+>
+>May be related to [[maedaArtificialForceInduced2016|Artificial Force Induced Reaction (AFIR) Method for Exploring Quantum Chemical Potential Energy Surfaces]]?
+
+[^1]: An indicator for a catch bond can be a large movement of the involved stationary states of the PES under external force. [(p.4099)](zotero://open-pdf/library/items/XAVHD6YZ?page=4099&annotation=8TWHFRMM)
+
+
+## Newton trajectory (NT)
+reference of [[Newton trajectory]] ref 6,7 [(p. 4097)](zotero://open-pdf/library/items/XAVHD6YZ?page=4097&annotation=P4IP2TGP)
+
+Ingredients 
+>[!multi-column]
+>> 1. **Effective mechanochemical potential** [(p. 4097)](zotero://open-pdf/library/items/XAVHD6YZ?page=4097&annotation=USU5E6AM)
+>> ![[meta/attachments/in zotero/quappTheoryExamplesCatch2024/image-undefined-x58-y198.png]] 
+>>- V(.)
+>>	- is the potential energy surface (PES) of a molecular system under consideration or its free-energy surface. 
+>>- f 
+>>	- is the normalized direction of an external force vector acting on the molecule, and F is the magnitude of the force. 
+>>- x
+>>	- we depict the molecule in arbitrary coordinates. 
+>>- The superscript T indicates the transpose. Note that force is a vector quantity, where both direction and size are important. 
+>>
+>>1. **gradient** 
+>>![[meta/attachments/in zotero/quappTheoryExamplesCatch2024/image-undefined-x322-y259.png]] 
+>>- force 
+>>	- ![[meta/attachments/in zotero/quappTheoryExamplesCatch2024/image-undefined-x324-y163.png]] 
+>
+>> at critical point $\mathbf{x}_{c}$, 
+>> 1. **one can have another EoM** 
+>>![[meta/attachments/in zotero/quappTheoryExamplesCatch2024/image-2-x59-y715.png]] 
+>>1. **adjunct Hessian**  
+>>![[meta/attachments/in zotero/quappTheoryExamplesCatch2024/image-2-x61-y626.png]] 
+>>- was created a long time ago by Branin[(p. 4098)](zotero://open-pdf/library/items/XAVHD6YZ?page=4098&annotation=8TYEQK72)
+
+The solution of this EoM and gradient is called Newton trajectory [(p. 4098)](zotero://open-pdf/library/items/XAVHD6YZ?page=4098&annotation=7S5FZU27)
+- More generally, an NT  connects stationary points of an index difference of one.15−17 A solution curve has to cross a point on its path where it holds Det(H) = 0. The force in the direction f with the magnitude to reach the point with Det(H) = 0 forces the former minimum and former saddle SP1 to coincide. This event is called the bond  breaking point (BBP).7 [(p. 4098)](zotero://open-pdf/library/items/XAVHD6YZ?page=4098&annotation=5K7GHG8H)
+- Each local point on the Det(H) = 0 manifold determines one solution curve of eq 3, though its corresponding gradient direction is there. [(p. 4098)](zotero://open-pdf/library/items/XAVHD6YZ?page=4098&annotation=4E9TTML2)
+- The reason is that along every solution curve of eq 3, the gradient direction is fixed and is equal to f. The manifold Det(H) = 0 crosses anywhere on  the PES, the manifold of valley-ridge inflection (VRI)  points.16,18−21 [(p. 4098)](zotero://open-pdf/library/items/XAVHD6YZ?page=4098&annotation=S3TQZPHA)
+
+## Slip and catch bonds 
+
+>[!multi-column]
+>>**slip bonds**
+>>Slip Bonds. There are different types of bonds: one type  is the ideal bond40,41 being insensitive against tensile forces. It has been suggested to play a role in enabling the receptor−ligand pair to withstand tensile force, but it has not yet been reported in experiments. [(p. 4098)](zotero://open-pdf/library/items/XAVHD6YZ?page=4098&annotation=VAG7T3IC)
+>
+>> **catch bonds**
+>> Increase the external force, the lifetime increase (counterintuitive to normal chemical bond)
+>> **Force-Enhanced Stability:** The bond becomes more stable as force increases, up to an optimal level.
+>> • **Biological Relevance:** Observed in various biological systems, such as **selectins** involved in white blood cell adhesion and **dynein** motor proteins interacting with microtubules.
+>> • **Transition to Slip Bond:** At forces beyond a certain threshold, catch bonds transition to slip bond behaviour, where the lifetime decreases with further force.
+>> 
+>>**Theoretical Explanation **
+>> The document discusses catch bonds in the context of **molecular potential energy surfaces (PESs)** and explains them using **Newton trajectories (NTs)**. NTs help describe how molecules behave under external forces:
+>> • Catch bonds arise when the direction of applied force causes the **energy barrier for dissociation** to **increase**, thereby stabilising the bond.
+>> • They are contrasted with slip bonds, where the energy barrier decreases under force, leading to quicker dissociation.
+
+
+%% end notes %%
+
+## Annotations
+%% begin annotations %%
+
+%% Import Date: 2025-02-22T07:46:40.073+01:00 %%
+- #Q $V_{f}(\mathbf{x})=V(\mathbf{x})-F\mathbf{f}^{T}\cdot \mathbf{x}$
+	- Note: how to define the foce in real observable? compare something in the measurment?
+
+![[meta/attachments/in zotero/quappTheoryExamplesCatch2024/image-3-x89-y192.png]] 
+
+%% end annotations %%
+
+
